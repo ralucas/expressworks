@@ -7,6 +7,7 @@ var app = express();
 
 app.use(bodyParser.urlencoded());
 
+app.use(express.static(process.argv[3]||path.join(__dirname, 'public')));
 app.set(process.argv[3], path.join(__dirname, 'templates'));
 
 app.set('view engine', 'jade');
