@@ -4,9 +4,9 @@ var jade = require('jade');
 var bodyParser = require('body-parser');
 var app = express();
 
-
 app.use(bodyParser.urlencoded());
 
+app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(process.argv[3]||path.join(__dirname, 'public')));
 app.set(process.argv[3], path.join(__dirname, 'templates'));
 
