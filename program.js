@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var jade = require('jade');
 var bodyParser = require('body-parser');
+var fs = require('fs');
 var app = express();
 
 app.use(bodyParser.urlencoded());
@@ -41,6 +42,15 @@ app.get('/search', function(req, res) {
         results: results,
         type: type,
         page: page
+    });
+});
+
+app.get('/books', function(req, res) {
+    var output = {};
+    fs.readFile(process.argv[3], function(err, data) {
+        if (err) console.error(err, err.stack);
+        output = JSON.parse(data);
+        res.json(200, output);
     });
 });
 
