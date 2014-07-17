@@ -32,5 +32,16 @@ app.put('/message/:id', function(req, res) {
     res.send(response);
 });
 
+app.get('/search', function(req, res) {
+    var results = req.query.results;
+    var type = req.query.type;
+    var page = req.query.page;
+
+    res.json(200, {
+        results: results,
+        type: type,
+        page: page
+    });
+});
 
 app.listen(process.argv[2]);
